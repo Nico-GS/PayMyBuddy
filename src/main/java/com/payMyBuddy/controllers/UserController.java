@@ -36,20 +36,6 @@ public class UserController {
     }
 
     /**
-     * Get user by mail
-     * @param email the user's email
-     * @return a userDto, BAD_REQUEST if the user doesn't exist.
-     */
-    @GetMapping(value ="/user")
-    public ResponseEntity<UserDTO> getByEmail(@RequestParam("email") String email){
-        Optional<User> user = userService.getByEmail(email);
-        if(user.isEmpty()){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-        return ResponseEntity.ok(modelMapper.map(user.get(), UserDTO.class));
-    }
-
-    /**
      * Create new user in DB
      * @param user the user to be create in DB
      * @return 200 successful | 400 failed
@@ -62,6 +48,20 @@ public class UserController {
             return ResponseEntity.ok(modelMapper.map(user, UserDTO.class));
         }
         return ResponseEntity.badRequest().build();
+    }
+
+    /**
+     * Get user by mail
+     * @param email the user's email
+     * @return a userDto, BAD_REQUEST if the user doesn't exist.
+     */
+    @GetMapping(value ="/user")
+    public ResponseEntity<UserDTO> getByEmail(@RequestParam("email") String email){
+        Optional<User> user = userService.getByEmail(email);
+        if(user.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.ok(modelMapper.map(user.get(), UserDTO.class));
     }
 
     /**
