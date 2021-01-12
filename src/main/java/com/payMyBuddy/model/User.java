@@ -30,7 +30,7 @@ public class User {
     @Column(nullable = false, length = 45)
     private String nickname;
 
-    @Column(nullable = false, precision = 18, scale = 2)
+    @Column(precision = 18, scale = 2)
     private double amount;
 
     @JoinTable(name="connections", joinColumns = {
