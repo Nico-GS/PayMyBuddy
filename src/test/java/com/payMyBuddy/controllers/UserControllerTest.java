@@ -45,7 +45,7 @@ public class UserControllerTest {
 
     private User createUser(String email){
         User user = new User();
-        user.setPseudo("Nicolas");
+        user.setNickname("Nicolas");
         user.setEmail(email);
         user.setPassword("password");
         return user;
@@ -95,7 +95,7 @@ public class UserControllerTest {
         );
 
         User alreadyInDb = userService.getByEmail(newUser.getEmail()).get();
-        assertEquals("Nicolas",alreadyInDb.getPseudo());
+        assertEquals("Nicolas",alreadyInDb.getNickname());
         UserDTO pseudoUser = new UserDTO();
         pseudoUser.setEmail(newUser.getEmail());
         pseudoUser.setNickname("Nicolas");
@@ -104,7 +104,7 @@ public class UserControllerTest {
         response = restTemplate.exchange(
                 createURLWithPort("user"), HttpMethod.PUT, entity2, String.class
         );
-        assertEquals(pseudoUser.getNickname(), userService.getByEmail(newUser.getEmail()).get().getPseudo());
+        assertEquals(pseudoUser.getNickname(), userService.getByEmail(newUser.getEmail()).get().getNickname());
     }
 
     @Test

@@ -48,7 +48,7 @@ public class BankControllerTest {
 
     private User createUser(){
         User user = new User();
-        user.setPseudo("Nicolas");
+        user.setNickname("Nicolas");
         user.setEmail("nicolas@test.com");
         user.setPassword("password");
         user.setAmount(0);

@@ -13,5 +13,5 @@ public class UserDTO {
     private String email;
     private String nickname;
     private String password;
-    private String solde;
+    private String amount;
 }

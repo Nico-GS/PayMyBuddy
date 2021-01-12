@@ -28,7 +28,7 @@ public class User {
     private String password;
 
     @Column(nullable = false, length = 45)
-    private String pseudo;
+    private String nickname;
 
     @Column(nullable = false, precision = 18, scale = 2)
     private double amount;
@@ -47,7 +47,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
-                ", pseudo='" + pseudo + '\'' +
+                ", pseudo='" + nickname + '\'' +
                 ", sold=" + amount +
                 '}';
     }
@@ -61,11 +61,11 @@ public class User {
                 id.equals(user.id) &&
                 email.equals(user.email) &&
                 password.equals(user.password) &&
-                pseudo.equals(user.pseudo);
+                nickname.equals(user.nickname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password, pseudo, amount);
+        return Objects.hash(id, email, password, nickname, amount);
     }
 }

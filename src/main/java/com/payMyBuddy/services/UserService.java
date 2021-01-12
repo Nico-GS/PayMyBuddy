@@ -61,8 +61,8 @@ public class UserService {
         Optional<User> opt = userRepository.findByEmail(UserDto.getEmail());
         if(opt.isPresent()){
             User inDB = opt.get();
-            if(!inDB.getPseudo().equals(UserDto.getNickname())){
-                inDB.setPseudo(UserDto.getNickname());
+            if(!inDB.getNickname().equals(UserDto.getNickname())){
+                inDB.setNickname(UserDto.getNickname());
                 userRepository.save(inDB);
             }
         }
