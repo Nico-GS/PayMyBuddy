@@ -29,6 +29,12 @@ public class UserController {
 
     Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
+
+    @GetMapping({"/", "/home"})
+    public String getHome() {
+        return "<h1> Welcome to the app PayMyBuddy </h1>";
+    }
+
     /**
      * Get user by mail
      * @param email the user's email
