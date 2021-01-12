@@ -64,9 +64,9 @@ public class BankService {
         // If < 0 withdraw money
         // If user don't have enough money return false
         if(bankTransac.getAmount() > 0){
-            user.setSolde(user.getSolde() + absAmount);
-        } else if (bankTransac.getAmount() < 0 && absAmount <= user.getSolde()) {
-            user.setSolde(user.getSolde() - absAmount);
+            user.setAmount(user.getAmount() + absAmount);
+        } else if (bankTransac.getAmount() < 0 && absAmount <= user.getAmount()) {
+            user.setAmount(user.getAmount() - absAmount);
         } else {
             return false;
         }

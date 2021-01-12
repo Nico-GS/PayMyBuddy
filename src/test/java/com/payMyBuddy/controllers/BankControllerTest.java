@@ -51,7 +51,7 @@ public class BankControllerTest {
         user.setPseudo("Nicolas");
         user.setEmail("nicolas@test.com");
         user.setPassword("password");
-        user.setSolde(0);
+        user.setAmount(0);
         return user;
     }
 
@@ -69,14 +69,14 @@ public class BankControllerTest {
                 testURLController("bankTransaction/"+user1.getId()), HttpMethod.POST,entity, Bank.class
         );
         assertFalse(bankService.findByUser(user1).isEmpty());
-        assertEquals(userService.getById(user1.getId()).get().getSolde(), 100);
+        assertEquals(userService.getById(user1.getId()).get().getAmount(), 100);
     }
 
     @Test
     @DisplayName("Process transaction when money (enough) is taken from bank account")
     public void processTransactionWhenMoneyIsTakenOnBankAccountAndAmountEnough(){
         User user1 = createUser();
-        user1.setSolde(100);
+        user1.setAmount(100);
         user1 = userService.saveUser(user1);
         assertTrue(bankService.findByUser(user1).isEmpty());
         BankDTO bankDTO = new BankDTO();
@@ -87,14 +87,14 @@ public class BankControllerTest {
                 testURLController("bankTransaction/"+user1.getId()), HttpMethod.POST,entity, Bank.class
         );
         assertFalse(bankService.findByUser(user1).isEmpty());
-        assertEquals(userService.getById(user1.getId()).get().getSolde(), 10);
+        assertEquals(userService.getById(user1.getId()).get().getAmount(), 10);
     }
 
     @Test
     @DisplayName("Failed transaction when not enough money in bank account")
     public void processTransactionFailedWhenNotEnoughMoneyInBankAccount(){
         User user1 = createUser();
-        user1.setSolde(10);
+        user1.setAmount(10);
         user1 = userService.saveUser(user1);
         assertTrue(bankService.findByUser(user1).isEmpty());
         BankDTO bankDTO = new BankDTO();
@@ -105,7 +105,7 @@ public class BankControllerTest {
                 testURLController("bankTransaction/"+user1.getId()), HttpMethod.POST,entity, Bank.class
         );
         assertTrue(bankService.findByUser(user1).isEmpty());
-        assertEquals(userService.getById(user1.getId()).get().getSolde(), 10);
+        assertEquals(userService.getById(user1.getId()).get().getAmount(), 10);
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
 
@@ -113,7 +113,7 @@ public class BankControllerTest {
     @DisplayName("Failed transaction when user ID is invalid")
     public void processTransactionFailedWhenUserIdIsInvalid(){
         User user1 = createUser();
-        user1.setSolde(10);
+        user1.setAmount(10);
         user1 = userService.saveUser(user1);
         assertTrue(bankService.findByUser(user1).isEmpty());
         BankDTO bankDTO = new BankDTO();

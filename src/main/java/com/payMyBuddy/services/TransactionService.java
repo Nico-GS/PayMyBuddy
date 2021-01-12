@@ -32,7 +32,7 @@ public class TransactionService {
      * @return true authorized | false not authorized
      */
     private boolean authorizedPayment(User fromUser, User toUser, double total) {
-        return fromUser.getSolde() > total && fromUser.getListFriend().contains(toUser);
+        return fromUser.getAmount() > total && fromUser.getListFriend().contains(toUser);
     }
 
     /**
@@ -55,8 +55,8 @@ public class TransactionService {
         User toUser = userRepository.findById(transacDTO.getReceiverId()).get();
 
         if (authorizedPayment(fromUser, toUser, total)) {
-            fromUser.setSolde(fromUser.getSolde() - total);
-            toUser.setSolde(toUser.getSolde() + amount);
+            fromUser.setAmount(fromUser.getAmount() - total);
+            toUser.setAmount(toUser.getAmount() + amount);
             Transaction transaction = new Transaction();
             transaction.setSender(fromUser);
             transaction.setReceiver(toUser);

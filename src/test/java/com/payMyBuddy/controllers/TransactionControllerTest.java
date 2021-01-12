@@ -49,7 +49,7 @@ public class TransactionControllerTest {
         user.setPseudo("Nicolas");
         user.setEmail("nicolas@test.com");
         user.setPassword("password");
-        user.setSolde(0);
+        user.setAmount(0);
         return user;
     }
 
@@ -67,7 +67,7 @@ public class TransactionControllerTest {
     public void paymentSuccessBetweenTheUsersWhenSoldIsEnough(){
         User user1 = userService.getById(1L).get();
         User user2 = userService.getById(2L).get();
-        user1.setSolde(100);
+        user1.setAmount(100);
         userService.addFriend(user1, user2);
         user1 = userService.saveUser(user1);
         assertTrue(transactionService.findAllByUser(user1).isEmpty());
@@ -88,8 +88,8 @@ public class TransactionControllerTest {
         Transaction inDB = transactionService.findAllByUser(user1).stream().findFirst().get();
         assertEquals(user1, inDB.getSender());
         assertEquals(user2, inDB.getReceiver());
-        assertEquals(16d, user1.getSolde());
-        assertEquals(80d, user2.getSolde());
+        assertEquals(16d, user1.getAmount());
+        assertEquals(80d, user2.getAmount());
     }
 
     @Test
@@ -137,7 +137,7 @@ public class TransactionControllerTest {
     public void paymentReturnBadRequestIfNoConnectionBetweenUsers(){
         User user1 = userService.getById(1L).get();
         User user2 = userService.getById(2L).get();
-        user1.setSolde(100);
+        user1.setAmount(100);
         user1 = userService.saveUser(user1);
         assertTrue(transactionService.findAllByUser(user1).isEmpty());
         TransactionDTO transactionDTO = new TransactionDTO();

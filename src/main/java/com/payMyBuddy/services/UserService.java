@@ -30,7 +30,7 @@ public class UserService {
     public User createUser(User user){
         String hashPw = Hashing.hash(user.getPassword());
         user.setPassword(hashPw);
-        user.setSolde(0d);
+        user.setAmount(0d);
         user.setListFriend(new ArrayList<>());
         return userRepository.save(user);
     }
