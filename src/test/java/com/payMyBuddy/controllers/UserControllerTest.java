@@ -63,7 +63,7 @@ public class UserControllerTest {
         );
 
         assertTrue(userService.getByEmail(newUser.getEmail()).isPresent());
-        assertEquals(0, userRepository.findByEmail(newUser.getEmail()).get().getAmount());
+        assertEquals(0, userRepository.findByEmail(newUser.getEmail()).get().getSolde());
         // Verify if password is crypt in DB
         assertNotEquals(newUser.getPassword(),userService.getByEmail(newUser.getEmail()).get().getPassword() );
     }

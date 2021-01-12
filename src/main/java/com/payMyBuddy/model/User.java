@@ -31,7 +31,7 @@ public class User {
     private String pseudo;
 
     @Column(nullable = false, precision = 18, scale = 2)
-    private double amount;
+    private double solde;
 
     @JoinTable(name="connections", joinColumns = {
             @JoinColumn(name = "owner_id", referencedColumnName = "id", nullable = false)
@@ -48,7 +48,7 @@ public class User {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", pseudo='" + pseudo + '\'' +
-                ", sold=" + amount +
+                ", sold=" + solde +
                 '}';
     }
 
@@ -57,7 +57,7 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Double.compare(user.amount, amount) == 0 &&
+        return Double.compare(user.solde, solde) == 0 &&
                 id.equals(user.id) &&
                 email.equals(user.email) &&
                 password.equals(user.password) &&
@@ -66,6 +66,6 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password, pseudo, amount);
+        return Objects.hash(id, email, password, pseudo, solde);
     }
 }
