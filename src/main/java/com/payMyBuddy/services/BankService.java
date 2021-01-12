@@ -1,6 +1,6 @@
 package com.payMyBuddy.services;
 
-import com.payMyBuddy.model.BankTransaction;
+import com.payMyBuddy.model.Bank;
 import com.payMyBuddy.model.User;
 import com.payMyBuddy.repository.BankRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +28,8 @@ public class BankService {
      * @param amount amount of money transferred, positive or negative
      * @return the object BankTransaction
      */
-    public BankTransaction createBankTransaction(User user, String accountNumber, double amount){
-        BankTransaction transac = new BankTransaction();
+    public Bank createBankTransaction(User user, String accountNumber, double amount){
+        Bank transac = new Bank();
         transac.setUser(user);
         transac.setAccountNumber(accountNumber);
         transac.setAmount(amount);
@@ -42,7 +42,7 @@ public class BankService {
      * @param transac the transaction
      * @return the transaction in dB
      */
-    public BankTransaction save(BankTransaction transac){
+    public Bank save(Bank transac){
         return bankRepository.save(transac);
     }
 
@@ -51,7 +51,7 @@ public class BankService {
      * @param bankTransac the bankTransaction
      * @return true success | false failed
      */
-    public boolean processTransaction(BankTransaction bankTransac){
+    public boolean processTransaction(Bank bankTransac){
         // If amount 0 return false
         if(bankTransac.getAmount() == 0){
             return false;
@@ -80,7 +80,7 @@ public class BankService {
      * @param user the user
      * @return a list of transactions
      */
-    public List<BankTransaction> findByUser(User user){
+    public List<Bank> findByUser(User user){
         return bankRepository.findAllByUser(user);
     }
 }

@@ -1,14 +1,13 @@
 package com.payMyBuddy.controllers;
 
 import com.payMyBuddy.DTO.BankDTO;
-import com.payMyBuddy.model.BankTransaction;
+import com.payMyBuddy.model.Bank;
 import com.payMyBuddy.model.User;
 import com.payMyBuddy.repository.BankRepository;
 import com.payMyBuddy.services.BankService;
 import com.payMyBuddy.services.UserService;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -67,7 +66,7 @@ public class BankControllerTest {
         bankDTO.setAccountNumber("AccountNumber");
         HttpEntity<BankDTO> entity = new HttpEntity<>(bankDTO, httpHeaders);
         ResponseEntity response = restTemplate.exchange(
-                testURLController("bankTransaction/"+user1.getId()), HttpMethod.POST,entity, BankTransaction.class
+                testURLController("bankTransaction/"+user1.getId()), HttpMethod.POST,entity, Bank.class
         );
         assertFalse(bankService.findByUser(user1).isEmpty());
         assertEquals(userService.getById(user1.getId()).get().getAmount(), 100);
@@ -85,7 +84,7 @@ public class BankControllerTest {
         bankDTO.setAccountNumber("IBAN");
         HttpEntity<BankDTO> entity = new HttpEntity<>(bankDTO, httpHeaders);
         ResponseEntity response = restTemplate.exchange(
-                testURLController("bankTransaction/"+user1.getId()), HttpMethod.POST,entity, BankTransaction.class
+                testURLController("bankTransaction/"+user1.getId()), HttpMethod.POST,entity, Bank.class
         );
         assertFalse(bankService.findByUser(user1).isEmpty());
         assertEquals(userService.getById(user1.getId()).get().getAmount(), 10);
@@ -103,7 +102,7 @@ public class BankControllerTest {
         bankDTO.setAccountNumber("AccountNumber");
         HttpEntity<BankDTO> entity = new HttpEntity<>(bankDTO, httpHeaders);
         ResponseEntity response = restTemplate.exchange(
-                testURLController("bankTransaction/"+user1.getId()), HttpMethod.POST,entity, BankTransaction.class
+                testURLController("bankTransaction/"+user1.getId()), HttpMethod.POST,entity, Bank.class
         );
         assertTrue(bankService.findByUser(user1).isEmpty());
         assertEquals(userService.getById(user1.getId()).get().getAmount(), 10);
@@ -122,7 +121,7 @@ public class BankControllerTest {
         bankDTO.setAccountNumber("IBAN");
         HttpEntity<BankDTO> entity = new HttpEntity<>(bankDTO, httpHeaders);
         ResponseEntity response = restTemplate.exchange(
-                testURLController("bankTransaction/"+(user1.getId()+1)), HttpMethod.POST,entity, BankTransaction.class
+                testURLController("bankTransaction/"+(user1.getId()+1)), HttpMethod.POST,entity, Bank.class
         );
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }

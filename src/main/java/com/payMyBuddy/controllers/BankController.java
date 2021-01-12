@@ -1,7 +1,7 @@
 package com.payMyBuddy.controllers;
 
 import com.payMyBuddy.DTO.BankDTO;
-import com.payMyBuddy.model.BankTransaction;
+import com.payMyBuddy.model.Bank;
 import com.payMyBuddy.model.User;
 import com.payMyBuddy.services.BankService;
 import com.payMyBuddy.services.UserService;
@@ -37,9 +37,9 @@ public class BankController {
         }
 
         User user = userService.getById(userId).get();
-        BankTransaction bankTransaction = bankTransac.createBankTransaction(user, bankDTO.getAccountNumber(),bankDTO.getAmount());
-        if(bankTransac.processTransaction(bankTransaction)){
-            bankTransac.save(bankTransaction);
+        Bank bank = bankTransac.createBankTransaction(user, bankDTO.getAccountNumber(),bankDTO.getAmount());
+        if(bankTransac.processTransaction(bank)){
+            bankTransac.save(bank);
             return ResponseEntity.ok(bankDTO);
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -52,13 +52,13 @@ public class BankController {
      * @return list of bank transaction, 400 if the user doesn't exist
      */
     @GetMapping(value = "bankTransaction/{userId}")
-    public ResponseEntity<List<BankTransaction>> getTransaction(@PathVariable Long userId){
+    public ResponseEntity<List<Bank>> getTransaction(@PathVariable Long userId){
         if(userService.getById(userId).isEmpty()){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
         User user = userService.getById(userId).get();
-        List<BankTransaction> listTransac = bankTransac.findByUser(user);
+        List<Bank> listTransac = bankTransac.findByUser(user);
         return ResponseEntity.ok(listTransac);
     }
 }
