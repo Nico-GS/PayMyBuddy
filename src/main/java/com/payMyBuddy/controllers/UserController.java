@@ -41,7 +41,7 @@ public class UserController {
      * @return 200 successful | 400 failed
      */
     @PostMapping(value = "/user")
-    public ResponseEntity<UserDTO> createUser(@RequestBody User user){
+    public ResponseEntity createUser(@RequestBody User user){
         // Create if user email isn't in DB
         if(userService.getByEmail(user.getEmail()).isEmpty()){
             userService.createUser(user);

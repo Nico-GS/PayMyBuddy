@@ -98,13 +98,13 @@ public class UserControllerTest {
         assertEquals("Nicolas",alreadyInDb.getPseudo());
         UserDTO pseudoUser = new UserDTO();
         pseudoUser.setEmail(newUser.getEmail());
-        pseudoUser.setPseudo("Nicolas");
+        pseudoUser.setNickname("Nicolas");
 
         HttpEntity<UserDTO> entity2 = new HttpEntity<>(pseudoUser, httpHeaders);
         response = restTemplate.exchange(
                 createURLWithPort("user"), HttpMethod.PUT, entity2, String.class
         );
-        assertEquals(pseudoUser.getPseudo(), userService.getByEmail(newUser.getEmail()).get().getPseudo());
+        assertEquals(pseudoUser.getNickname(), userService.getByEmail(newUser.getEmail()).get().getPseudo());
     }
 
     @Test
@@ -118,7 +118,7 @@ public class UserControllerTest {
 
         UserDTO pseudoUser = new UserDTO();
         pseudoUser.setEmail("test@test.com");
-        pseudoUser.setPseudo("Nico");
+        pseudoUser.setNickname("Nico");
 
         HttpEntity<UserDTO> entity2 = new HttpEntity<>(pseudoUser, httpHeaders);
         response = restTemplate.exchange(
