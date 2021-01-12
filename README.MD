@@ -4,7 +4,7 @@
 
 <h3>Model Database (SQL)</h3>
 
-
+![Model BDD](https://github.com/Nico-GS/PayMyBuddy/blob/master/SQL/ModeleBDDImg.png)
 
 
 
