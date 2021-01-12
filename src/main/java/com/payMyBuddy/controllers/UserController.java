@@ -55,7 +55,7 @@ public class UserController {
      * @param email the user's email
      * @return a userDto, BAD_REQUEST if the user doesn't exist.
      */
-    @GetMapping(value ="/user")
+    @GetMapping(value ="/getUser")
     public ResponseEntity<UserDTO> getByEmail(@RequestParam("email") String email){
         Optional<User> user = userService.getByEmail(email);
         if(user.isEmpty()){

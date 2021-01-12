@@ -45,7 +45,7 @@ public class UserService {
     }
 
     /**
-     * Find a user by its email
+     * Find a user by email
      * @param email the email
      * @return optional of a user
      */
