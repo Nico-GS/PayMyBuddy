@@ -41,7 +41,6 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<User> listFriend;
 
-
     @Override
     public String toString() {
         return "User{" +
