@@ -2,6 +2,8 @@ package com.payMyBuddy.controllers;
 
 import com.payMyBuddy.DTO.TransactionDTO;
 import com.payMyBuddy.services.TransactionService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Propagation;
@@ -17,6 +19,8 @@ public class TransactionController {
     @Autowired
     private TransactionService transacService;
 
+    Logger LOGGER = LoggerFactory.getLogger(TransactionController.class);
+
     /**
      * Payment between users
      * @param transac the transaction infos
@@ -25,6 +29,7 @@ public class TransactionController {
     @PostMapping(value = "/transaction")
     public ResponseEntity makeTransaction(@RequestBody TransactionDTO transac){
         if(transacService.makePayment(transac)){
+            LOGGER.info("Transaction success");
             return ResponseEntity.ok(transac);
         } else {
             return ResponseEntity.badRequest().body(transac);
