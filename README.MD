@@ -27,7 +27,7 @@ Maven 4.0.0
 MariaDB (or MySQL) 10.5.8
 <br><br>
 Jasypt 1.9.3 : http://www.jasypt.org/download.html For encrypt the database password
-<br><br>
+<br>
 <b>./encrypt.sh input=passwordToEncrypt password=KeyPassword</b>
 <br><br>
 jBCrypt for encrypt user password in database : https://www.mindrot.org/projects/jBCrypt/
