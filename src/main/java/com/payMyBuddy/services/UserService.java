@@ -32,6 +32,7 @@ public class UserService {
         user.setPassword(hashPw);
         user.setListFriend(new ArrayList<>());
         return userRepository.save(user);
+
     }
 
     /**
