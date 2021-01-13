@@ -63,7 +63,7 @@ public class BankControllerTest {
         assertTrue(bankService.findByUser(user1).isEmpty());
         BankDTO bankDTO = new BankDTO();
         bankDTO.setAmount(100d);
-        bankDTO.setAccountNumber("AccountNumber");
+        bankDTO.setIban("AccountNumber");
         HttpEntity<BankDTO> entity = new HttpEntity<>(bankDTO, httpHeaders);
         ResponseEntity response = restTemplate.exchange(
                 testURLController("bankTransaction/"+user1.getId()), HttpMethod.POST,entity, Bank.class
@@ -81,7 +81,7 @@ public class BankControllerTest {
         assertTrue(bankService.findByUser(user1).isEmpty());
         BankDTO bankDTO = new BankDTO();
         bankDTO.setAmount(-90d);
-        bankDTO.setAccountNumber("IBAN");
+        bankDTO.setIban("IBAN");
         HttpEntity<BankDTO> entity = new HttpEntity<>(bankDTO, httpHeaders);
         ResponseEntity response = restTemplate.exchange(
                 testURLController("bankTransaction/"+user1.getId()), HttpMethod.POST,entity, Bank.class
@@ -99,7 +99,7 @@ public class BankControllerTest {
         assertTrue(bankService.findByUser(user1).isEmpty());
         BankDTO bankDTO = new BankDTO();
         bankDTO.setAmount(-90d);
-        bankDTO.setAccountNumber("AccountNumber");
+        bankDTO.setIban("AccountNumber");
         HttpEntity<BankDTO> entity = new HttpEntity<>(bankDTO, httpHeaders);
         ResponseEntity response = restTemplate.exchange(
                 testURLController("bankTransaction/"+user1.getId()), HttpMethod.POST,entity, Bank.class
@@ -118,7 +118,7 @@ public class BankControllerTest {
         assertTrue(bankService.findByUser(user1).isEmpty());
         BankDTO bankDTO = new BankDTO();
         bankDTO.setAmount(10d);
-        bankDTO.setAccountNumber("IBAN");
+        bankDTO.setIban("IBAN");
         HttpEntity<BankDTO> entity = new HttpEntity<>(bankDTO, httpHeaders);
         ResponseEntity response = restTemplate.exchange(
                 testURLController("bankTransaction/"+(user1.getId()+1)), HttpMethod.POST,entity, Bank.class

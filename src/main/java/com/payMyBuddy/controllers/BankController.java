@@ -5,6 +5,8 @@ import com.payMyBuddy.model.Bank;
 import com.payMyBuddy.model.User;
 import com.payMyBuddy.services.BankService;
 import com.payMyBuddy.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,8 @@ public class BankController {
     @Autowired
     private UserService userService;
 
+    Logger LOGGER = LoggerFactory.getLogger(BankController.class);
+
     /**
      * Process bank transaction
      * @param bankDTO transaction infos
@@ -37,11 +41,13 @@ public class BankController {
         }
 
         User user = userService.getById(userId).get();
-        Bank bank = bankTransac.createBankTransaction(user, bankDTO.getAccountNumber(),bankDTO.getAmount());
+        Bank bank = bankTransac.createBankTransaction(user, bankDTO.getIban(),bankDTO.getAmount());
         if(bankTransac.processTransaction(bank)){
             bankTransac.save(bank);
+            LOGGER.info("Process Bank Transaction success");
             return ResponseEntity.ok(bankDTO);
         } else {
+            LOGGER.info("Invalid ID, transaction failed");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }

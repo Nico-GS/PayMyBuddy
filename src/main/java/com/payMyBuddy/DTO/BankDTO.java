@@ -10,6 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BankDTO {
-    private String accountNumber;
+    private String iban;
     private double amount;
 }
