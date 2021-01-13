@@ -22,7 +22,7 @@ public class TransactionController {
      * @param transac the transaction infos
      * @return 200 if successful | 400 if failed
      */
-    @PostMapping(value = "transaction")
+    @PostMapping(value = "/transaction")
     public ResponseEntity makeTransaction(@RequestBody TransactionDTO transac){
         if(transacService.makePayment(transac)){
             return ResponseEntity.ok(transac);
