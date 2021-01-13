@@ -20,12 +20,16 @@ https://github.com/Nico-GS/PayMyBuddy/blob/master/SQL/script.sql
 
 Java 14
 <br>
+Spring Boot 2.3.4
+<br>
 Maven 4.0.0
 <br>
 MariaDB (or MySQL) 10.5.8
 <br>
-Jasypt 1.9.3 : http://www.jasypt.org/download.html For encrypt user password in database
+Jasypt 1.9.3 : http://www.jasypt.org/download.html For encrypt the database password
 <br>
 <b>./encrypt.sh input=passwordToEncrypt password=KeyPassword</b>
+<br>
+jBCrypt for encrypt user password in database : https://www.mindrot.org/projects/jBCrypt/
 
 
